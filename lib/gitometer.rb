@@ -12,5 +12,9 @@ module Gitometer
     get '/' do 
       erb :index
     end
+
+    get '/login' do 
+      authenticate!
+    end
   end
 end

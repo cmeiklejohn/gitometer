@@ -10,9 +10,9 @@ end
 
 $LOAD_PATH << File.dirname(__FILE__) + '/lib'
 
+Bundler.require
+
 require 'sinatra'
 require 'gitometer'
-
-Bundler.require
 
 run Gitometer::Application
