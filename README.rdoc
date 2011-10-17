@@ -1,0 +1,9 @@
+= Gitometer
+
+== License
+
+Gitometer is Copyright © 2011 Christopher Meiklejohn.  It is free software, and may be redistributed under the terms specified in the LICENSE file.
+
+== About
+
+Gitometer was written by {Christopher Meiklejohn}[mailto:cmeiklejohn@swipely.com].
