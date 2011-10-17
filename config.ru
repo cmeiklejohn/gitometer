@@ -1,14 +1,9 @@
-ENV['RACK_ENV'] ||= 'development'
+# encoding: UTF-8
 
-require 'rubygems'
-require 'bundler'
-Bundler.setup
+ENV['RACK_ENV'] ||= 'development'
 
 $LOAD_PATH << File.dirname(__FILE__) + '/lib'
 
-Bundler.require
-
-require 'sinatra'
 require 'gitometer'
 
 run Gitometer.app

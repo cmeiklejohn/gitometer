@@ -1,3 +1,10 @@
+# encoding: UTF-8
+
+require 'rubygems'
+require 'bundler'
+require 'sinatra'
+require 'warden'
+
 module Gitometer
   class Application < Sinatra::Base
     enable  :sessions
