@@ -26,19 +26,35 @@ module Gitometer
         end
       end
 
+      def authenticated?
+        env['warden'].authenticated?
+      end
+
+      def logout!
+        env['warden'].logout
+      end
+
       def user
         env['warden'].user
+      end
+
+      def github_profile_page(user)
+        "http://github.com/#{user.login}"
       end
     end
 
     get '/' do
+      erb :index
+    end
+
+    get '/login' do 
       ensure_authenticated
-      "Hello There, #{user.name}!"
+      redirect '/'
     end
 
     get '/redirect_to' do
       ensure_authenticated
-      "Hello There, #{user.name}! return_to is working!"
+      "Redirect to is working!"
     end
 
     get '/auth/github/callback' do
@@ -47,8 +63,8 @@ module Gitometer
     end
 
     get '/logout' do
-      env['warden'].logout
-      "Peace!"
+      logout!
+      redirect '/'
     end
   end
 
