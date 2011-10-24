@@ -64,7 +64,7 @@
         <div class="pull-right">
           <ul class="nav">
             <% if authenticated? %>
-              <li><a href="<%= github_profile_page(user) %>">Hi, <%= user.name %></a></li>
+              <li><a href="<%= profile_page_url_for(user) %>">Hi, <%= user.name %></a></li>
               <li><a href="/logout">Logout</a></li>
             <% else %>
               <li><a href="/login">Login</a></li>

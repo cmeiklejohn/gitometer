@@ -5,8 +5,12 @@ require 'bundler'
 require 'sinatra'
 require 'warden'
 require 'warden-github'
+require 'rest_client'
 
 module Gitometer
+  autoload :GithubHelpers, 'gitometer/github_helpers'
+  autoload :WardenHelpers, 'gitometer/warden_helpers'
+
   class Application < Sinatra::Base
     enable  :sessions
     enable  :raise_errors
@@ -28,30 +32,15 @@ module Gitometer
     end
 
     helpers do
-      def ensure_authenticated
-        unless env['warden'].authenticate!
-          throw(:warden)
-        end
-      end
-
-      def authenticated?
-        env['warden'].authenticated?
-      end
-
-      def logout!
-        env['warden'].logout
-      end
-
-      def user
-        env['warden'].user
-      end
-
-      def github_profile_page(user)
-        "http://github.com/#{user.login}"
-      end
+      include Gitometer::GithubHelpers
+      include Gitometer::WardenHelpers
     end
 
     get '/' do
+      if authenticated?
+        repositories_for_user(user).each do |repository|
+        end
+      end
       erb :index
     end
 
