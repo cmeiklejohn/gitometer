@@ -10,6 +10,8 @@ gem 'kumade'
 
 gem 'rest-client'
 
+gem 'json'
+
 gem 'thin'
 
 gem 'warden'

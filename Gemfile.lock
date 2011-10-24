@@ -67,6 +67,7 @@ PLATFORMS
 
 DEPENDENCIES
   heroku
+  json
   kumade
   rack
   rake
