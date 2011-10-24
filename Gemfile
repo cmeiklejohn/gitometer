@@ -5,6 +5,11 @@ gem 'sinatra'
 gem 'rack'
 gem 'rake'
 
+gem 'heroku'
+gem 'kumade'
+
+gem 'rest-client'
+
 gem 'thin'
 
 gem 'warden'
