@@ -1,1 +1,13 @@
-Hi
+<div class="row">
+  <div class="span10 offset2">
+    <pre>
+
+<% if authenticated? %>
+Hi <%= user.name %>, please wait...
+<% else %>
+<a href="/login">Login with GitHub</a></li>
+<% end %>
+
+    </pre>
+  </div>
+</div>
