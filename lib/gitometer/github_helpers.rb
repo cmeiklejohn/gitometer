@@ -8,5 +8,10 @@ module Gitometer
       response = RestClient.get "https://api.github.com/users/#{user.login}/repos?access_token=#{user.token}"
       JSON.parse(response)
     end
+
+    def commits_for_user_and_repository(user, repository)
+      response = RestClient.get "https://api.github.com/repos/#{user.login}/#{repository['name']}/commits?access_token=#{user.token}"
+      JSON.parse(response)
+    end
   end
 end
