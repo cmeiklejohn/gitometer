@@ -4,6 +4,7 @@ require 'rubygems'
 require 'bundler'
 require 'sinatra'
 require 'warden'
+require 'warden-github'
 
 module Gitometer
   class Application < Sinatra::Base
