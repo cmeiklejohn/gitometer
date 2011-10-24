@@ -3,9 +3,14 @@
 require 'rubygems'
 require 'bundler'
 require 'sinatra'
+
 require 'warden'
 require 'warden-github'
+
 require 'rest_client'
+require 'json'
+
+require 'time'
 
 module Gitometer
   autoload :GithubHelpers, 'gitometer/github_helpers'
@@ -37,11 +42,20 @@ module Gitometer
     end
 
     get '/' do
-      if authenticated?
-        repositories_for_user(user).each do |repository|
-        end
-      end
       erb :index
+    end
+
+    get '/commits.json' do
+      content_type :json
+      commits = case authenticated?
+                when true 
+                  repositories_for_user(user).map do |repository|
+                    commits_for_user_and_repository(user, repository)
+                  end
+                when false
+                  {}
+                end
+      commits_to_daily_count(commits).to_json
     end
 
     get '/login' do 
