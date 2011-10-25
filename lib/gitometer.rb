@@ -18,6 +18,7 @@ module Gitometer
 
   class Application < Sinatra::Base
     enable  :sessions
+    enable  :logging
     enable  :raise_errors
     disable :show_exceptions
 
@@ -42,20 +43,20 @@ module Gitometer
     end
 
     get '/' do
-      erb :index
-    end
+      todays_date     = Time.now.strftime("%Y-%m-%d")
+      yesterdays_date = (Time.now - 86400).strftime("%Y-%m-%d")
 
-    get '/commits.json' do
-      content_type :json
-      commits = case authenticated?
-                when true 
-                  repositories_for_user(user).map do |repository|
-                    commits_for_user_and_repository(user, repository)
-                  end
-                when false
-                  {}
-                end
-      commits_to_daily_count(commits).to_json
+      if authenticated?
+        commits = repositories_for_user(user).map do |repository|
+          commits_for_user_and_repository(user, repository)
+        end
+        commits = commits_to_daily_count(commits)
+
+        @todays_commits     = commits[todays_date]
+        @yesterdays_commits = commits[yesterdays_date]
+      end
+
+      erb :index
     end
 
     get '/login' do 
