@@ -52,11 +52,22 @@ module Gitometer
         end
         commits = commits_to_daily_count(commits)
 
-        @todays_commits     = commits[todays_date]
-        @yesterdays_commits = commits[yesterdays_date]
+        @todays_commits     = commits[todays_date] || 0 
+        @yesterdays_commits = commits[yesterdays_date] || 0 
       end
 
       erb :index
+    end
+
+    get '/commits.json' do 
+      content_type :json
+      if authenticated?
+        commits = repositories_for_user(user).map do |repository|
+          commits_for_user_and_repository(user, repository)
+        end
+        commits = commits_to_daily_count(commits)
+        commits.to_json
+      end
     end
 
     get '/login' do 
