@@ -1,5 +1,7 @@
 = Gitometer
 
+Track your daily commit performance.  Please fork and send pull requests with any changes.
+
 == License
 
 Gitometer is Copyright © 2011 Christopher Meiklejohn.  It is free software, and may be redistributed under the terms specified in the LICENSE file.
