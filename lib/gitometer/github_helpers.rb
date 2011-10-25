@@ -12,14 +12,26 @@ module Gitometer
       "access_token=#{user.token}"
     end
 
-    def repositories_for_user(user)
-      response = RestClient.get "#{endpoint}/users/#{user.login}/repos?#{access_token_param_for_user(user)}"
-      JSON.parse(response)
+    def param_for_page(page)
+      if page
+        "page=#{page}"
+      end
+    end
+
+    def repositories_for_user(user, page = nil)
+      response = RestClient.get "#{endpoint}/users/#{user.login}/repos?#{access_token_param_for_user(user)}&#{param_for_page(page)}"
+      body     = JSON.parse(response.body)
+
+      if response.headers[:link] =~ /page=(\d+).*next/
+        body + repositories_for_user(user, $1)
+      else
+        body
+      end
     end
 
     def commits_for_user_and_repository(user, repository)
       response = RestClient.get "#{endpoint}/repos/#{user.login}/#{repository['name']}/commits?#{access_token_param_for_user(user)}"
-      JSON.parse(response)
+      JSON.parse(response.body)
     end
 
     def commits_to_daily_count(commits) 
