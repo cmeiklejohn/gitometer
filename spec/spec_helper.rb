@@ -10,6 +10,8 @@ require 'webmock/rspec'
 
 require 'gitometer'
 
+require 'support/shared_contexts'
+
 RSpec.configure do |config|
   config.include(Rack::Test::Methods)
 
