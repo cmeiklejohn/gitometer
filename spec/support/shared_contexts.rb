@@ -7,3 +7,9 @@ shared_context 'a valid github repository response' do
     {:server=>"nginx/1.0.4", :date=>"Tue, 25 Oct 2011 03:31:29 GMT", :content_type=>"application/json; charset=utf-8", :transfer_encoding=>"chunked", :connection=>"keep-alive", :status=>"200 OK", :x_ratelimit_limit=>"5000", :etag=>"\"XXX\"", :x_oauth_scopes=>"", :link=>"<https://api.github.com/users/cmeiklejohn/repos?access_token=XXX&page=2>; rel=\"next\", <https://api.github.com/users/cmeiklejohn/repos?access_token=XXX&page=2>; rel=\"last\"", :x_ratelimit_remaining=>"4534", :x_accepted_oauth_scopes=>"repo" }
   end
 end
+
+shared_context 'a valid github commit response' do 
+  let(:commit_response_body) do 
+    '[{"author":null,"sha":"9bda8fef01d6d44fe5997ed258584c616f14c89f","url":"https://api.github.com/repos/cmeiklejohn/wine_dot_com_api_request/commits/9bda8fef01d6d44fe5997ed258584c616f14c89f","parents":[{"sha":"907b8cf9315419d48af720d6989c4c4de9380c00","url":"https://api.github.com/repos/cmeiklejohn/wine_dot_com_api_request/commits/907b8cf9315419d48af720d6989c4c4de9380c00"}],"commit":{"tree":{"sha":"ff84944df9f826ae8d069a183a4e157cb62abccb","url":"https://api.github.com/repos/cmeiklejohn/wine_dot_com_api_request/git/trees/ff84944df9f826ae8d069a183a4e157cb62abccb"},"author":{"email":"cmeik@mac.com","date":"2010-01-01T22:45:39-08:00","name":"Christopher Meiklejohn"},"message":"Added text to readme.","url":"https://api.github.com/repos/cmeiklejohn/wine_dot_com_api_request/git/commits/9bda8fef01d6d44fe5997ed258584c616f14c89f","committer":{"email":"cmeik@mac.com","date":"2010-01-01T22:45:39-08:00","name":"Christopher Meiklejohn"}},"committer":null}]'
+  end
+end
