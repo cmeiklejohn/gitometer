@@ -50,5 +50,6 @@ module Gitometer
       end
       commits = Hash[commits.sort]
     end
+
   end
 end

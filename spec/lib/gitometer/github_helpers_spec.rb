@@ -34,7 +34,7 @@ module Gitometer
       end
 
       context 'and a repository' do
-        let(:repository) { mock('repository', :[] => 'wine_dot_com_api_request' ) }
+        let(:repository) { mock('repository', :[] => 'wine_dot_com_api_request') }
 
         it 'retrieves the commits for a users repository' do
           stub_request(:get, "https://api.github.com/repos/cmeik/wine_dot_com_api_request/commits?access_token=1").
