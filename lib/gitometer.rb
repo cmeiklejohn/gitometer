@@ -64,11 +64,6 @@ module Gitometer
       redirect '/'
     end
 
-    get '/redirect_to' do
-      ensure_authenticated
-      "Redirect to is working!"
-    end
-
     get '/auth/github/callback' do
       ensure_authenticated
       redirect '/'

@@ -20,9 +20,4 @@ describe 'Gitometer' do
     get '/auth/github/callback'
     last_response.should be_redirect
   end
-  
-  it 'responds to /redirect_to' do
-    get '/redirect_to'
-    last_response.should be_redirect
-  end
 end
