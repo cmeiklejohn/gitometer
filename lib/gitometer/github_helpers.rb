@@ -4,18 +4,12 @@ module Gitometer
       "https://api.github.com"
     end
 
-    def profile_page_url_for(user)
-      "http://github.com/#{user.login}"
-    end
-
     def access_token_param_for_user(user)
       "access_token=#{user.token}"
     end
 
     def param_for_page(page)
-      if page
-        "page=#{page}"
-      end
+      "page=#{page}" if page
     end
 
     def repositories_for_user(user, page = nil)
