@@ -6,6 +6,7 @@ $LOAD_PATH << File.dirname(__FILE__) + '/lib'
 
 require 'rspec'
 require 'rack/test'
+require 'webmock/rspec'
 
 require 'gitometer'
 
