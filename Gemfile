@@ -21,6 +21,8 @@ group :test do
   gem 'rspec'
   gem 'rack-test'
   gem 'webmock'
+  gem 'guard'
+  gem 'guard-rspec'
 end
 
 group :development do
