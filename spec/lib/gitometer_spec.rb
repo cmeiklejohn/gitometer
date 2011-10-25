@@ -1,6 +1,8 @@
 require 'spec_helper'
 
-describe 'Gitometer' do
+describe Gitometer do
+  subject { Gitometer.app }
+
   it 'responds to /' do
     get '/'
     last_response.should be_ok
