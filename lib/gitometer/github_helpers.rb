@@ -30,7 +30,7 @@ module Gitometer
 
     def commits_to_daily_count(commits) 
       commits = commits.flatten.inject({}) do |h, v|
-        key = Time.parse(v["commit"]["author"]["date"]).strftime("%Y-%m-%d")
+        key = Time.parse(v["commit"]["author"]["date"]).utc.strftime("%Y-%m-%d")
         h[key] = h[key].nil? ? 1 : h[key] + 1
         h
       end

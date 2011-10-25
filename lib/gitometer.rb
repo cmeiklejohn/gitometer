@@ -43,8 +43,8 @@ module Gitometer
     end
 
     get '/' do
-      todays_date     = Time.now.strftime("%Y-%m-%d")
-      yesterdays_date = (Time.now - 86400).strftime("%Y-%m-%d")
+      todays_date     = Time.now.utc.strftime("%Y-%m-%d")
+      yesterdays_date = (Time.now.utc - 86400).strftime("%Y-%m-%d")
 
       if authenticated?
         commits = repositories_for_user(user).map do |repository|
