@@ -1,6 +1,6 @@
 = Gitometer
 
-Track your daily commit performance.  Please fork and send pull requests with any changes.
+Track your daily commit performance.  A work in progress.  Please fork and send pull requests with any changes.
 
 == License
 
