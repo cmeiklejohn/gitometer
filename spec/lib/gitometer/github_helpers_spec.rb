@@ -11,8 +11,8 @@ module Gitometer
     end
 
     context 'with a user' do 
-      let(:user) { mock('user', :token => 1, :login => 'cmeik') }
-
+      include_context 'a github user'
+      include_context 'a github repository'
       include_context 'a valid github repository response'
       include_context 'a valid github commit response'
 
@@ -25,21 +25,11 @@ module Gitometer
       end
 
       it 'retrieves the repositories for a user' do 
-        stub_request(:get, "https://api.github.com/users/cmeik/repos?access_token=1").
-          to_return(:status => 200, :body => repository_response_body, :headers => repository_response_headers)
-        stub_request(:get, "https://api.github.com/users/cmeik/repos?access_token=1&page=2").
-          to_return(:status => 200, :body => "[]", :headers => {})
-
         subject.repositories_for_user(user).should == JSON.parse(repository_response_body)
       end
 
       context 'and a repository' do
-        let(:repository) { mock('repository', :[] => 'wine_dot_com_api_request') }
-
         it 'retrieves the commits for a users repository' do
-          stub_request(:get, "https://api.github.com/repos/cmeik/wine_dot_com_api_request/commits?access_token=1").
-            to_return(:status => 200, :body => commit_response_body, :headers => {})
-
           subject.commits_for_user_and_repository(user, repository).should == JSON.parse(commit_response_body)
         end
 
