@@ -52,8 +52,16 @@ module Gitometer
         end
         commits = commits_to_daily_count(commits)
 
-        @todays_commits     = commits[todays_date] || 0 
+        @todays_commits     = commits[todays_date]     || 0 
         @yesterdays_commits = commits[yesterdays_date] || 0 
+        
+        if @todays_commits < @yesterdays_commits 
+          @message = "You are behind, better get moving!"
+        elsif @todays_commits > @yesterdays_commits
+          @message = "ROCK AND ROLL!"
+        else
+          @message = "You aren't very productive at all, are you?"
+        end
       end
 
       erb :index
