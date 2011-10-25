@@ -59,17 +59,6 @@ module Gitometer
       erb :index
     end
 
-    get '/commits.json' do 
-      content_type :json
-      if authenticated?
-        commits = repositories_for_user(user).map do |repository|
-          commits_for_user_and_repository(user, repository)
-        end
-        commits = commits_to_daily_count(commits)
-        commits.to_json
-      end
-    end
-
     get '/login' do 
       ensure_authenticated
       redirect '/'

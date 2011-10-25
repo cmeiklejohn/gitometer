@@ -6,11 +6,6 @@ describe 'Gitometer' do
     last_response.should be_ok
   end
 
-  it 'responds to /commits.json' do 
-    get '/commits.json' 
-    last_response.should be_ok
-  end
-
   it 'responds to /login' do 
     get '/login'
     last_response.should be_redirect
